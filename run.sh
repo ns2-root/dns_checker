@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd dns_checker/golang/
+cd golang/
 
 yum install tar -y
 
