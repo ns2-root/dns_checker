@@ -1,2 +1,1 @@
-# dns_checker
-dns_checker
+Step 1: Please run run.sh
