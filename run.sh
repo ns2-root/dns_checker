@@ -12,8 +12,8 @@ echo 'export PATH=$PATH:/usr/local/go/bin' >> "$HOME/.profile"
 
 source "$HOME/.profile"
 
-exec bash
-
 cd ~
 
 rm -rf dns_checker/golang/
+
+exec bash
