@@ -34,14 +34,14 @@ func main() {
 		<title>DNS Checker</title>
 	</head>
 	<body>
-		<h1>DNS Checker</h1>
+		<h3>DNS Checker</h3>
 		<form action="/" method="get">
 			<label for="service">Servis Adı:</label>
 			<input type="text" name="service" required>
 			<button type="submit">Sorgula</button>
 		</form>
 		{{ if .Values }}
-			<h2>IP Adresleri:</h2>
+			<h4>IP Adresleri:</h4>
 			<ul>
 				{{ range .Values }}
 					<li>{{ . }}</li>
