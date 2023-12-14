@@ -2,7 +2,7 @@
 
 cd dns_checker/golang/
 
-yum intall tar -y
+yum install tar -y
 
 yum install gunzip -y
 
