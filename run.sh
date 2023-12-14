@@ -1,6 +1,10 @@
 #!/bin/bash
 
-cd /tam/dizin/yolu/dns_checker/golang/
+cd dns_checker/golang/
+
+yum intall tar -y
+
+yum install gunzip -y
 
 sudo tar -zxvf go1.21.5.linux-amd64.tar.gz -C /usr/local/
 
