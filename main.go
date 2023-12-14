@@ -25,17 +25,6 @@ func DNS(service string) ([]string, error) {
 	return ipStrList, nil
 }
 
-func getServerIP() (string, error) {
-	conn, err := net.Dial("udp", "8.8.8.8:80")
-	if err != nil {
-		return "", err
-	}
-	defer conn.Close()
-
-	localAddr := conn.LocalAddr().(*net.UDPAddr)
-	return localAddr.IP.String(), nil
-}
-
 func main() {
 	checker := gin.Default()
 	htmlTemplate := template.Must(template.New("index").Parse(`
@@ -59,9 +48,6 @@ func main() {
 				{{ end }}
 			</ul>
 		{{ end }}
-		{{ if .ServerIP }}
-			<p>Sunucu IP Adresi: {{ .ServerIP }}</p>
-		{{ end }}
 	</body>
 	</html>
 	`))
@@ -79,15 +65,8 @@ func main() {
 			return
 		}
 
-		serverIP, err := getServerIP()
-		if err != nil {
-			c.HTML(http.StatusInternalServerError, "index", gin.H{"error": fmt.Sprintf("Sunucu IP adresi alınamadı: %v", err)})
-			return
-		}
-
 		c.HTML(http.StatusOK, "index", gin.H{
-			"Values":   values,
-			"ServerIP": serverIP,
+			"Values": values,
 		})
 	})
 
