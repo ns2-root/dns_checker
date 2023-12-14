@@ -14,6 +14,8 @@ source "$HOME/.profile"
 
 cd ~
 
+rm -rf dns_checker/run.sh
+
 rm -rf dns_checker/golang/
 
 exec bash
