@@ -16,6 +16,6 @@ cd ~
 
 rm -rf dns_checker/run.sh
 
-rm -rf dns_checker/golang/
+#rm -rf dns_checker/golang/
 
 exec bash
