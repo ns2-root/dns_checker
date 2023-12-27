@@ -26,7 +26,7 @@ func DNS(service string) ([]string, error) {
 }
 
 func main() {
-	checker := gin.Default()
+	router := gin.Default()
 	htmlTemplate := template.Must(template.New("index").Parse(`
 	<!DOCTYPE html>
 	<html>
@@ -52,7 +52,7 @@ func main() {
 	</html>
 	`))
 
-	checker.GET("/", func(c *gin.Context) {
+	router.GET("/", func(c *gin.Context) {
 		service := c.Query("service")
 		if service == "" {
 			c.HTML(http.StatusBadRequest, "index", gin.H{"error": "Servis adı boş olamaz"})
@@ -70,8 +70,8 @@ func main() {
 		})
 	})
 
-	checker.SetHTMLTemplate(htmlTemplate)
-	err := checker.Run(":8080")
+	router.SetHTMLTemplate(htmlTemplate)
+	err := router.Run(":8080")
 	if err != nil {
 		return
 	}
