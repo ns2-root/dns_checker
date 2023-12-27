@@ -18,6 +18,4 @@ rm -rf dns_checker/run.sh
 
 rm -rf dns_checker/golang/
 
-rm -rf dns_checker/README.md
-
 exec bash
