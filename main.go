@@ -52,7 +52,7 @@ func main() {
 	</html>
 	`))
 
-	router.GET("index", func(c *gin.Context) {
+	router.GET("/", func(c *gin.Context) {
 		service := c.Query("service")
 		if service == "" {
 			c.HTML(http.StatusBadRequest, "index", gin.H{"error": "Servis adı boş olamaz"})
