@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"net"
 	"net/http"
+	"os"
 
 	"github.com/gin-gonic/gin"
 )
@@ -24,9 +25,30 @@ func DNS(service string) ([]string, error) {
 
 	return ipStrList, nil
 }
+func addrs() ([]string, error) {
+	hostname, err := os.Hostname()
+	if err != nil {
+		return nil, err
+	}
+
+	addrs, err := net.LookupHost(hostname)
+	if err != nil {
+		return nil, err
+	}
+	var serverIpStrList []string
+	for _, serverIp := range addrs {
+		serverIpStr := serverIp
+		serverIpStrList = append(serverIpStrList, serverIpStr)
+		fmt.Println(serverIpStr)
+	}
+	return serverIpStrList, nil
+}
 
 func main() {
 	router := gin.Default()
+	router.ForwardedByClientIP = true
+	router.SetTrustedProxies([]string{http.LocalAddrContextKey.String()})
+
 	htmlTemplate := template.Must(template.New("index").Parse(`
 	<!DOCTYPE html>
 	<html>
