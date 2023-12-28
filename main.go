@@ -93,7 +93,7 @@ func main() {
 	})
 
 	router.SetHTMLTemplate(htmlTemplate)
-	err := router.Run(":5457")
+	err := router.Run("89.252.140.72:5457")
 	if err != nil {
 		return
 	}
