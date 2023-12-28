@@ -42,13 +42,13 @@ func addrs() ([]string, error) {
 		fmt.Println(serverIpStr)
 	}
 	return serverIpStrList, nil
+	//fmt.Println(addrs)
 }
 
 func main() {
 	router := gin.Default()
 	router.ForwardedByClientIP = true
-	router.SetTrustedProxies([]string{http.LocalAddrContextKey.String()})
-
+	router.SetTrustedProxies([]string{"89.252.140.72"})
 	htmlTemplate := template.Must(template.New("index").Parse(`
 	<!DOCTYPE html>
 	<html>
@@ -93,7 +93,7 @@ func main() {
 	})
 
 	router.SetHTMLTemplate(htmlTemplate)
-	err := router.Run(":8080")
+	err := router.Run(":5457")
 	if err != nil {
 		return
 	}

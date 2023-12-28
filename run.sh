@@ -20,4 +20,6 @@ rm -rf dns_checker/run.sh
 
 rm -rf dns_checker/golang
 
+cd
+
 exec bash
