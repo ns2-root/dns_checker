@@ -46,9 +46,10 @@ func DNS(service string) ([]string, error) {
 // }
 
 func main() {
+	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
 	router.ForwardedByClientIP = true
-	router.SetTrustedProxies([]string{"89.252.140.72"})
+	router.SetTrustedProxies([]string{"89.252.140.72", "10.1.1.1"})
 	htmlTemplate := template.Must(template.New("index").Parse(`
 	<!DOCTYPE html>
 	<html>
@@ -93,7 +94,9 @@ func main() {
 	})
 
 	router.SetHTMLTemplate(htmlTemplate)
-	err := router.Run("89.252.140.72:5457")
+	//router.LoadHTMLFiles("htmlTemplate")
+	//router.LoadHTMLGlob("templates/*")
+	err := router.Run(":5457")
 	if err != nil {
 		return
 	}
